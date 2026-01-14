@@ -115,7 +115,7 @@ Like all real medical records, this data is imperfect:
 
 ---
 
-## The Approach: How the System Works
+## Methodology: Building the Prediction System
 
 *This section explains the technical methodology in accessible language for non-technical readers.*
 
@@ -370,27 +370,15 @@ Seven different machine learning algorithms were tested:
 
 All visualizations are saved in the `images/` folder. Key figures include:
 
-#### 1. Missing Data Patterns
-![Missing Values](images/missing_values_percentage.png)
-*Shows which tests are most frequently skipped - helps prioritize which tests to perform*
-
-#### 2. Target Variable Distribution
-![Target Distribution](images/target_variable_analysis.png)
-*Class balance: 62.5% CKD, 37.5% healthy - slight imbalance handled in modeling*
-
-#### 3. Feature Distributions by CKD Status
+#### 1. Feature Distributions by CKD Status
 ![Box Plots](images/boxplots_numerical_features_by_class.png)
 *Clear separation between CKD and healthy patients in key biomarkers*
 
-#### 4. Correlation Matrix
-![Correlation](images/correlation_matrix.png)
-*Shows relationships between different measurements - guided feature engineering*
-
-#### 5. Feature Importance
+#### 2. Feature Importance
 ![Feature Selection](images/feature_selection_analysis.png)
 *Top 25 features ranked by predictive power - blood cell score and kidney markers dominate*
 
-#### 6. Model Performance
+#### 3. Model Performance
 ![Model Evaluation](images/baseline_model_evaluation.png)
 *Confusion matrix, ROC curve, and model comparison - demonstrates near-perfect performance*
 
@@ -426,7 +414,7 @@ While this model demonstrates excellent performance, it's important to acknowled
 
 ---
 
-## Technical Details and Code
+## Implementation: Code and Technical Resources
 
 ### Project Structure
 
@@ -455,127 +443,17 @@ Project/
 
 ### Jupyter Notebook Contents
 
-The analysis notebook ([`ckd-prediction-eda.ipynb`](ckd-prediction-eda.ipynb)) walks through the complete analysis pipeline:
+The analysis notebook ([`ckd-prediction-eda.ipynb`](ckd-prediction-eda.ipynb)) provides a comprehensive, step-by-step walkthrough of the entire machine learning pipeline:
 
-**Section 1: Data Loading & Cleaning**
-- Import libraries and load dataset
-- Handle missing value indicators
-- Standardize column names and data types
-
-**Section 2: Data Inspection & Quality Assessment**
-- Dataset overview and structure
-- Statistical summaries
-- Duplicate detection
-- Feature type identification
-
-**Section 3: Missing Values Analysis**
-- Comprehensive missing data visualization
-- Pattern identification
-- Imputation strategy development
-
-**Section 4: Distribution Analysis**
-- Numerical feature distributions (histograms)
-- Box plots by target variable
-- Violin plots for key features
-
-**Section 5: Categorical Features Analysis**
-- Value counts and frequency distributions
-- Cross-tabulation with target variable
-- Visualization of categorical patterns
-
-**Section 6: Correlation Analysis**
-- Correlation matrix calculation and visualization
-- High correlation identification (>0.7)
-- Multicollinearity assessment
-
-**Section 7: Outlier Detection**
-- IQR method for outlier identification
-- Visualization of outliers for top features
-- Outlier impact analysis
-
-**Section 8: Early Train-Test Split**
-- 80/20 stratified split BEFORE preprocessing
-- Data leakage prevention strategy
-- Class distribution verification
-
-**Section 9: Modular Preprocessing Pipeline**
-- Custom transformer development
-- sklearn Pipeline implementation
-- Feature engineering transformers:
-  - Age grouping
-  - Composite scores (blood cell, kidney function, electrolyte balance)
-  - Ratio features (BUN/Creatinine, Hemo/Age, etc.)
-  - Risk factor counting
-- Categorical encoding
-- Numerical/categorical imputation
-- Feature scaling
-
-**Section 10: Feature Selection**
-- Redundancy removal
-- Random Forest feature importance analysis
-- Top 25 feature selection
-- Cumulative importance visualization
-
-**Section 11: Baseline Model Training**
-- Evaluation metrics selection and rationale
-- 7 model comparison:
-  - Logistic Regression
-  - Decision Tree
-  - Random Forest
-  - Gradient Boosting
-  - Support Vector Machine
-  - K-Nearest Neighbors
-  - Naive Bayes
-- Training time analysis
-- Cross-validation scoring
-- Model comparison summary
-
-**Section 12: Hyperparameter Tuning**
-- GridSearchCV implementation for Logistic Regression
-- Parameter grid exploration (C, penalty, solver)
-- 5-fold cross-validation optimization
-- Baseline vs. tuned model comparison
-- Performance improvement analysis
-
-**Section 13: Model Evaluation**
-- Detailed performance metrics
-- Confusion matrix analysis
-- ROC curve visualization
-- Model comparison charts
-- Feature importance visualization
-
-### Key Libraries Used
-
-```python
-# Data manipulation
-import pandas as pd
-import numpy as np
-
-# Visualization
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-
-# Machine Learning
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.impute import SimpleImputer, KNNImputer
-from sklearn.pipeline import Pipeline
-from sklearn.base import BaseEstimator, TransformerMixin
-
-# Models
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-
-# Evaluation
-from sklearn.metrics import (accuracy_score, precision_score, recall_score,
-                             f1_score, roc_auc_score, confusion_matrix,
-                             classification_report, roc_curve, auc)
-```
+**Complete Analysis Pipeline:**
+- Data loading, cleaning, and quality assessment
+- Missing value analysis and imputation strategies
+- Exploratory data analysis (distributions, correlations, outliers)
+- Feature engineering with custom transformers (composite scores, ratios, risk factors)
+- Feature selection using Random Forest importance ranking
+- Training and comparison of 7 machine learning models
+- Hyperparameter optimization using GridSearchCV
+- Rigorous model evaluation with cross-validation
 
 ### Running the Analysis
 
@@ -594,15 +472,7 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score,
    - Visualizations automatically saved to `images/` folder
    - No manual intervention required
 
-### Code Quality Standards
-
-- **No Errors:** All code runs successfully without errors  
-- **Meaningful Headers:** Each section clearly labeled with purpose  
-- **Comprehensive Comments:** Complex operations explained with inline comments  
-- **Reproducible:** Fixed random seeds (random_state=42) for consistent results  
-- **Modular:** Custom transformers for reusable preprocessing components  
-- **Data Leakage Prevention:** Early train-test split with sklearn Pipeline  
-- **Professional Visualizations:** High-resolution (300 DPI) publication-ready figures  
+All code is error-free, fully documented, and production-ready with reproducible results (fixed random seeds), modular sklearn Pipeline architecture preventing data leakage, and publication-quality visualizations (300 DPI).
 
 ---
 
