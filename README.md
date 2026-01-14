@@ -61,7 +61,7 @@ This project is about building the early warning system that could have saved he
 
 Can we build an intelligent system that analyzes commonly available patient data (blood tests, blood pressure, medical history) to identify Chronic Kidney Disease at an early, treatable stage—before irreversible kidney damage occurs?
 
-### What Makes This Challenging?
+#### What Makes This Challenging?
 
 1. **Silent Progression:** CKD develops slowly over 5-10 years without obvious symptoms
 2. **Complex Patterns:** Kidney function involves multiple organ systems and dozens of biomarkers
@@ -210,7 +210,7 @@ Seven different approaches were tested to find the best one:
 | Naive Bayes | Probabilistic prediction | 95.00% | 94.34% |
 | Support Vector Machine | High-dimensional separation | 62.50% | 0.00% |
 
-**Winner: Logistic Regression**
+#### Winner: Logistic Regression
 
 Despite being one of the simplest approaches, Logistic Regression achieved the best balance of performance, interpretability, and reliability.
 
@@ -357,7 +357,8 @@ Seven different machine learning algorithms were tested:
 | 6th | Naive Bayes | 94.34% | Simple but lower accuracy |
 | 7th | Support Vector Machine | 0.00% | Failed to predict CKD class |
 
-**Why Logistic Regression?**
+#### Why Logistic Regression?
+
 - **Simplicity:** Easy to understand and explain to doctors
 - **Interpretability:** Shows exactly which factors drive predictions
 - **Reliability:** Consistently high performance with low variance
@@ -369,27 +370,27 @@ Seven different machine learning algorithms were tested:
 
 All visualizations are saved in the `images/` folder. Key figures include:
 
-### 1. **Missing Data Patterns**
+#### 1. Missing Data Patterns
 ![Missing Values](images/missing_values_percentage.png)
 *Shows which tests are most frequently skipped - helps prioritize which tests to perform*
 
-### 2. **Target Variable Distribution**
+#### 2. Target Variable Distribution
 ![Target Distribution](images/target_variable_analysis.png)
 *Class balance: 62.5% CKD, 37.5% healthy - slight imbalance handled in modeling*
 
-### 3. **Feature Distributions by CKD Status**
+#### 3. Feature Distributions by CKD Status
 ![Box Plots](images/boxplots_numerical_features_by_class.png)
 *Clear separation between CKD and healthy patients in key biomarkers*
 
-### 4. **Correlation Matrix**
+#### 4. Correlation Matrix
 ![Correlation](images/correlation_matrix.png)
 *Shows relationships between different measurements - guided feature engineering*
 
-### 5. **Feature Importance**
+#### 5. Feature Importance
 ![Feature Selection](images/feature_selection_analysis.png)
 *Top 25 features ranked by predictive power - blood cell score and kidney markers dominate*
 
-### 6. **Model Performance**
+#### 6. Model Performance
 ![Model Evaluation](images/baseline_model_evaluation.png)
 *Confusion matrix, ROC curve, and model comparison - demonstrates near-perfect performance*
 
