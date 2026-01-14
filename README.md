@@ -228,6 +228,10 @@ The optimized model maintained the excellent performance while confirming the ro
 
 The winning model was evaluated on **80 completely new patients** it had never seen before:
 
+**Why F1-Score as Primary Metric?**
+
+For this medical application, **F1-Score** was selected as the primary evaluation metric because it balances precision and recall—critical when both false negatives (missing CKD cases) and false positives (unnecessary follow-ups) have real consequences. In CKD detection, **100% recall** (catching every case) is paramount, but we also need reasonable precision to avoid overwhelming clinics with false alarms. F1-Score captures this trade-off, making it the most appropriate metric for evaluating a life-saving screening tool.
+
 **Performance Metrics Explained:**
 
 - **98.75% Accuracy:** Out of 80 patients, correctly classified 79
@@ -396,6 +400,33 @@ While this model demonstrates excellent performance, it's important to acknowled
 
 ---
 
+## Next Steps and Recommendations
+
+To advance this project from research prototype to clinical deployment:
+
+**Validation and Improvement:**
+- Validate model on diverse patient populations across multiple hospitals and geographic regions
+- Conduct prospective clinical trials to confirm predictions against real-world patient outcomes
+- Implement continuous monitoring and retraining as medical practices evolve
+
+**Clinical Integration:**
+- Integrate with Electronic Health Record (EHR) systems via APIs for seamless workflow
+- Develop physician-facing dashboards showing risk scores and contributing factors
+- Create automated alert systems for flagging high-risk patients during routine visits
+
+**Regulatory Path:**
+- Pursue FDA clearance as a clinical decision support tool (Class II medical device)
+- Ensure HIPAA compliance and patient data privacy
+- Establish clinical protocols with nephrologists for model-flagged patients
+
+**Immediate Actions:**
+1. Partner with medical institutions for external validation studies
+2. Consult regulatory experts on FDA approval pathway
+3. Pilot test in primary care clinics to refine clinical integration
+4. Expand dataset with diverse demographics to reduce algorithmic bias
+
+---
+
 ## Real-World Impact Potential
 
 **If validated and deployed in clinical settings, this system could:**
@@ -471,8 +502,6 @@ The analysis notebook ([`ckd-prediction-eda.ipynb`](ckd-prediction-eda.ipynb)) p
    - All cells designed to run in order
    - Visualizations automatically saved to `images/` folder
    - No manual intervention required
-
-All code is error-free, fully documented, and production-ready with reproducible results (fixed random seeds), modular sklearn Pipeline architecture preventing data leakage, and publication-quality visualizations (300 DPI).
 
 ---
 
